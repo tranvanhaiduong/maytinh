@@ -10,8 +10,17 @@ function App() {
       || ops.includes(gt.slice(-1))
       )
     { 
-      if (value!=='/' &&value!=='*' &&value!=='%' &&value!=='+'
-      ){
+      if (value!=='/' &&value!=='*' &&value!=='%' &&value!=='+')
+      {
+        document.getElementById("result").value += value;
+      }
+    }
+    else
+    if(gt.slice(-1) === '.'
+      )
+    { 
+      if (value!=='.'&&value!=='/' &&value!=='*' &&value!=='%' &&value!=='+'&&value!=='-')
+      {
         document.getElementById("result").value += value;
       }
     }
@@ -39,7 +48,7 @@ function App() {
     if(gt.slice(1) === '0')
       {
       if (value!== "0"){
-        if(value!=='.')
+        if(value!=='.'&&value!=='/' &&value!=='*' &&value!=='%' &&value!=='+'&&value!=='-')
        document.getElementById("result").value = value;
        else  document.getElementById("result").value += value;
       }
@@ -68,16 +77,6 @@ function App() {
       }
       else document.getElementById("result").value += value;
     }
-    
-    //else
-    // if(gt.slice(-1) === '.'
-    //   )
-    // { 
-    //   if (value!=='.'
-    //   ){
-    //     document.getElementById("result").value += value;
-    //   }
-    // }
     else document.getElementById("result").value += value;
   }
   
