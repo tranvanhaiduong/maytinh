@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+
+<meta charset="utf-8">
+
+<title> Simple Calculator using HTML, CSS and JavaScript </title>
+
+<link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+<table class = "calculator" >
+
+<tr>
+
+<td colspan = "3"> <input class = "display-box" type = "text" id = "result" disabled /> </td>
+
+<!-- clearScreen() function clear all the values -->
+
+<td> <input class = "button" type = "button" value = "C" onclick = "clearScreen()" style = "background-color: #fb0066;" /> </td>
+
+</tr>
+
+<tr>
+
+<!-- display() function display the value of clicked button -->
+
+<td> <input class = "button" type = "button" value = "1" onclick = "display('1')" /> </td>
+
+<td> <input class = "button" type = "button" value = "2" onclick = "display('2')" /> </td>
+
+<td> <input class = "button" type = "button" value = "3" onclick = "display('3')" /> </td>
+
+<td> <input class = "button" type = "button" value = "/" onclick = "display('/')" /> </td>
+
+</tr>
+
+<tr>
+
+<td> <input class = "button" type = "button" value = "4" onclick = "display('4')" /> </td>
+
+<td> <input class = "button" type = "button" value = "5" onclick = "display('5')" /> </td>
+
+<td> <input class = "button" type = "button" value = "6" onclick = "display('6')" /> </td>
+
+<td> <input class = "button" type = "button" value = "-" onclick = "display('-')" /> </td>
+
+</tr>
+
+<tr>
+
+<td> <input class = "button" type = "button" value = "7" onclick = "display('7')" /> </td>
+
+<td> <input class = "button" type = "button" value = "8" onclick = "display('8')" /> </td>
+
+<td> <input class = "button" type = "button" value = "9" onclick = "display('9')" /> </td>
+
+<td> <input class = "button" type = "button" value = "+" onclick = "display('+')" /> </td>
+
+</tr>
+
+<tr>
+
+<td> <input class = "button" type = "button" value = "." onclick = "display('.')" /> </td>
+
+<td> <input class = "button" type = "button" value = "0" onclick = "display('0')" /> </td>
+
+<!-- calculate() function evaluate the mathematical expression -->
+
+<td> <input class = "button" type = "button" value = "=" onclick = "calculate()" style = "background-color: #fb0066;" /> </td>
+
+<td> <input class = "button" type = "button" value = "*" onclick = "display('*')" /> </td>
+
+</tr>
+
+</table>
+
+<script type="text/javascript" src="script.js"></script>
+
+</body>
+
+</html>
+
+function display(value) {
+
+document.getElementById("result").value += value;
+
+}
+<input type="text" placeholder="Type " id="inputId" class="inputClass">
+    <button type="button" onclick="getInputValue();">Get Value</button>
+    <script>
+      function getInputValue() {
+        // Selecting the input element and get its value 
+        let inputVal = document.getElementsByClassName("inputClass")[0].value;
+        // Displaying the value
+        alert(inputVal);
+      }
+    </script>
+
+const deletecal = () =>{
+  if(calc == ' '){
+    return;
+  }
+
+  const value = calc.slice(0, -1);
+
+  setCalc(value);
+}
+
+const updateCalc = value => {
+  if (
+    ops.includes(value) && calc === '' ||
+    ops.includes(value) && ops.includes(calc.slice(-1))
+  ) {
+    return;
+  }
+
+    setCalc(calc + value);
+
+if (!ops.includes(value)){
+  setResult(eval(calc + value).toString());
+}
+}
+
+constructor(props) {
+  super(props);
+  this.state = {
+      question: '',
+     
+  }
+  this.handleClick = this.handleClick.bind(this);
+}
+handleClick(event){
+  const value = event.target.value;
+         if (value =='=')
+         {
+          if (this.state.question!=='')
+          {
+              var ans='';
+                  try
+                  {
+                      ans = eval(((((this.state.question).replace(/x/g,'*')).replace(/,/g,'.')).replace(/÷/g,'/')).replace(/%/g,'/100'));
+                  }
+                  catch(err)
+                  {
+                     ans="Math Error"
+                  }
+                 
+                      this.setState({ question: ans.toString()});
+              
+          
+          }
+      }
+      else if (value==='AC')
+      
+        {
+          this.setState({ question: '' });
+          
+      }
+      else if (value==='+/-')
+      
+        {
+          var str = this.state.question;
+          str = str.slice(0,-1);
+          this.setState({question: str});
+          
+      }
+      else
+      
+        {
+          
+          if(this.state.question !== "Math Error")
+          {
+              //Kiểm tra các trường hợp nhập vào 1 dãy phép tính +++++++,----------
+              if((this.state.question).slice(-1) === "+" )
+              {
+                  if (value!=='+'&&value!=='-'&&value!=='x'&&value!=='÷')
+                  this.setState({ question: (this.state.question += value)})
+              }
+              else 
+              if((this.state.question).slice(-1) === "-" )
+              {
+                  if (value!=='+'&&value!=='-'&&value!=='x'&&value!=='÷')
+                  this.setState({ question: (this.state.question += value)})
+              }
+              else 
+              if((this.state.question).slice(-1) === "x" )
+              {
+                  if (value!=='+'&&value!=='-'&&value!=='x'&&value!=='÷')
+                  this.setState({ question: (this.state.question += value)})
+              }
+              else 
+              if((this.state.question).slice(-1) === "÷" )
+              {
+                  if (value!=='+'&&value!=='-'&&value!=='*'&&value!=='÷')
+                  this.setState({ question: (this.state.question += value)})
+              }
+
+
+              //Kiểm tra không được nhập vào một dãy 000000000
+              
+              else if((this.state.question) === "0"){
+                  if(value!=="0" )
+                 this.setState({ question: (this.state.question += value)})
+
+              }
+              //Kiểm tra khi nhập vào phép tính 1+ 01 
+              else if((this.state.question).slice(-1) === "0" &&this.state.question.slice(-2,-1) ==="+"){
+                  {
+                      var str = this.state.question;
+                      str = str.slice(0,-1);
+                      this.setState({question: str + value});
+                  }
+              }
+              else if((this.state.question).slice(-1) === "0" &&this.state.question.slice(-2,-1) ==="-"){
+                  {
+                      var str = this.state.question;
+                      str = str.slice(0,-1);
+                      this.setState({question: str + value});
+                  }
+              }
+              else if((this.state.question).slice(-1) === "0" &&this.state.question.slice(-2,-1) ==="x"){
+                  {
+                      var str = this.state.question;
+                      str = str.slice(0,-1);
+                      this.setState({question: str + value});
+                  }
+              }
+              else if((this.state.question).slice(-1) === "0" &&this.state.question.slice(-2,-1) ==="÷"){
+                  {
+                      var str = this.state.question;
+                      str = str.slice(0,-1);
+                      this.setState({question: str + value});
+                  }
+              }
+              
+              //Không cho nhập vào một dãy dấu ,,,,,,,,,  
+              else
+              if((this.state.question).slice(-1) === "," ){
+                  if (value!==','&&value!=='+'&&value!=='-'&&value!=='*'&&value!=='÷')
+                  this.setState({ question: (this.state.question += value)})
+              }
+              else
+
+              this.setState({ question: (this.state.question += value)})
+
+             
+          }
+          else
+          {
+              this.setState({question: value })
+          }
+          
+      }
+  }
