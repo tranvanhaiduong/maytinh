@@ -1,21 +1,22 @@
 import './App.css';
 
+
 function App() {
-  
+
   const dislay = value => {
-    var gt = " ";
+    var gt = "";
     gt = document.getElementById("result").value;
     var ops = ['/', '*', '+', '%'];
-    if(gt===" " 
-      || ops.includes(gt.slice(-1))
-      )
+    if(gt==="" 
+      || ops.includes(gt.slice(-1)) 
+    )
     { 
       if (value!=='/' &&value!=='*' &&value!=='%' &&value!=='+')
       {
         document.getElementById("result").value += value;
       }
-    }
-    else
+    } 
+    else  
     if(gt.slice(-1) === '.'
       )
     { 
@@ -24,7 +25,7 @@ function App() {
         document.getElementById("result").value += value;
       }
     }
-    else
+    else 
     if(gt.slice(-1) === '-'
       )
     { 
@@ -33,8 +34,7 @@ function App() {
         document.getElementById("result").value += value;
       }
     }
-   
-     else
+     else 
     // if(gt.slice(-1))
     //   {
     //   if (value!== "."){
@@ -52,9 +52,8 @@ function App() {
        document.getElementById("result").value = value;
        else  document.getElementById("result").value += value;
       }
-    }
-    else
-    
+    } 
+    else 
     if(value === "."){
       var kq='';
       try {
@@ -65,27 +64,27 @@ function App() {
       if(kq!=="Math Error")
       document.getElementById("result").value += value;
      }
-     else
+     else 
     if(gt.slice(-1) === '0')
       {
       if(gt.slice(-2,-1)==="+" || gt.slice(-2,-1)==="-" || gt.slice(-2,-1)==="*" || gt.slice(-2,-1)==="/"){
         if (value!== "0"){
           if(value!=='.')
-          document.getElementById("result").value = document.getElementById("result").value.slice(0,-1)+value;
-         else  document.getElementById("result").value += value;
+          document.getElementById("result").value = document.getElementById("result").value.slice(0,-1)+value; 
+         else  document.getElementById("result").value += value; 
         }
       }
-      else document.getElementById("result").value += value;
+      else document.getElementById("result").value += value; 
     }
-    else document.getElementById("result").value += value;
-  }
+    else document.getElementById("result").value += value; 
+  } 
   
   const tinh = () => {
     var p = document.getElementById("result").value;
-    var q = eval(p.replace(/%/g,'/100'));
+    var q = eval (p.replace(/%/g,'/100'));
     document.getElementById("result").value = q ;
   }
-
+  
   const AC = () => {
     document.getElementById("result").value = " ";
   }
