@@ -7,7 +7,7 @@ function App() {
     var gt = "";
     gt = document.getElementById("result").value;
     var ops = ['/', '*', '+', '%'];
-    if(gt==="" 
+    if(gt==="" || gt === " "
       || ops.includes(gt.slice(-1)) 
     )
     { 
@@ -88,7 +88,7 @@ function App() {
   const AC = () => {
     document.getElementById("result").value = " ";
   }
-
+  
   const DEC = () => {
     var a = document.getElementById("result").value;
     var x = a.slice(0,-1);  
